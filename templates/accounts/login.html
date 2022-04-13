@@ -1,0 +1,20 @@
+{% extends "includes/base.html" %}
+{% block title %}
+Login
+{% endblock %}
+{% block content %}
+<div class="card shadow-lg mt-5 p-4">
+  <div class="col-sm-12 col-lg-6 col-md-6 offset-lg-3 offset-md-3">
+    <h1>Login</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="Login"
+             class="btn btn-outline-primary float-end" />
+      <p class="text-info py-2">Don't have an account? <a
+           href="{% url 'register' %}" class="text-primary fw-bold">Register</a>
+      </p>
+    </form>
+  </div>
+</div>
+{% endblock %}

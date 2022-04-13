@@ -1,0 +1,38 @@
+.empty-text {
+  color: rgb(231, 81, 81);
+  border: 2px solid rgb(236, 106, 106);
+  border-radius: 2rem;
+  padding: 0.5rem;
+}
+
+.message {
+  text-align: left;
+  display: block;
+  color: rgb(29, 30, 31);
+  border: 2px solid rgb(34, 197, 238);
+  border-radius: 2rem;
+  margin: 0.5rem 0px;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  width: 40%;
+}
+
+.receiver {
+  margin-right: auto;
+}
+
+.sender {
+  margin-left: auto;
+}
+
+.chat-wrapper {
+  max-height: 50vh;
+  overflow: auto;
+  margin: 1rem 0px;
+  padding: 0.5rem;
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}

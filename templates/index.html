@@ -1,0 +1,24 @@
+{% extends "includes/base.html" %}
+{% load static %}
+{% block title %}
+Chat room
+{% endblock  %}
+
+{% block content %}
+<div class="col-sm-12 col-md-6 col-lg-6 offset-lg-3 offset-md-3 mt-5">
+    <div class="mb-3">
+        <label for="room-name" class="form-label">
+            Room Name
+        </label>
+        <input type="text" class="form-control" id="room-name"
+               placeholder="Enter the room name you want to enter">
+    </div>
+    <div class="mb-3">
+        <input type="submit" class="btn btn-outline-primary" id="submit"
+               value="Submit" />
+    </div>
+    {% block scripts %}
+    <script src="{% static 'chat_scripts.js' %}"></script>
+    {% endblock  %}
+</div>
+{% endblock  %}
