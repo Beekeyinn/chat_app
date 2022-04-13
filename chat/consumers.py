@@ -1,4 +1,5 @@
 import json
+import time
 from channels.generic.websocket import AsyncWebsocketConsumer
 from chat.models import Room, Message
 from asgiref.sync import sync_to_async
@@ -35,7 +36,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
         user = self.scope['user']
         # create message object from incoming message and user(gained from AuthMiddlewareStack)
         message_obj = await self.create_message(message, user, self.room)
-
+        self.message = {
+            'message': message_obj.message,
+            'send_at': int(time.mktime(message_obj.created_at.timetuple()))*1000,
+            'send_by': message_obj.user.username
+        }
         self.user = {
             'id': user.id,
             'name': user.username,
@@ -48,7 +53,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             {
                 # chat_message is the function name and is called automatically
                 'type': 'chat_message',
-                'message': message,
+                'message': self.message,
                 'user': self.user
             }
         )

@@ -10,7 +10,14 @@
         <div id="chat-data">
             {% for message in messages %}
             <span
-                  class="message {% if message.user == request.user %}sender{% else %}receiver{% endif %}">{{message.message}}
+                  class="message {% if message.user == request.user %}sender{% else %}receiver{% endif %}">
+                <span
+                      class="message-user">{{message.user.username|capfirst}}</span>
+                {{message.message}}
+
+
+                <span
+                      class="message-date">{{message.created_at|date:"D d M Y"}}</span>
             </span>
             {% endfor %}
         </div>

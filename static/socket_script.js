@@ -26,22 +26,36 @@ const chatSocket = new WebSocket(
 chatSocket.onmessage = function (event) {
   const data = JSON.parse(event.data);
   const user = data.user;
+  const message = data.message;
   console.log("data", data);
   console.log("user", user);
-  console.log("message", data.message);
-  const newElement = document.createElement("span");
-  newElement.innerText = data.message;
-  newElement.className = "message";
+  console.log("message", message.message);
+  const messageElement = document.createElement("span");
+  messageElement.innerText = message.message;
+  messageElement.className = "message";
+
+  const sendDate = new Date(message.send_at);
+  console.log(sendDate);
+
+  // user name span
+  const userElement = document.createElement("span");
+  userElement.innerText = message.send_by;
+  userElement.className = "message-user";
+  userElement.classList.add("hidden");
+
+  // to show user who sent message
+  messageElement.appendChild(userElement);
+
   if (document.querySelector("#empty-text")) {
     chatData.removeChild(document.querySelector("#empty-text"));
   }
   if (logged_user_id == user.id) {
-    newElement.classList.add("sender");
+    messageElement.classList.add("sender");
   } else {
-    newElement.classList.add("receiver");
+    messageElement.classList.add("receiver");
   }
 
-  chatData.appendChild(newElement);
+  chatData.appendChild(messageElement);
   scrollChatContainer();
 };
 
