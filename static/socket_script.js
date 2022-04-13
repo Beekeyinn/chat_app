@@ -27,35 +27,38 @@ chatSocket.onmessage = function (event) {
   const data = JSON.parse(event.data);
   const user = data.user;
   const message = data.message;
-  console.log("data", data);
-  console.log("user", user);
-  console.log("message", message.message);
+  const messageBlock = document.createElement("div");
+  messageBlock.className = "message-block";
+
   const messageElement = document.createElement("span");
   messageElement.innerText = message.message;
   messageElement.className = "message";
 
   const sendDate = new Date(message.send_at);
-  console.log(sendDate);
 
+  const sendDateElement = document.createElement("span");
+  sendDateElement.innerText = sendDate.toDateString();
+  sendDateElement.className = "message-date";
   // user name span
   const userElement = document.createElement("span");
   userElement.innerText = message.send_by;
   userElement.className = "message-user";
-  userElement.classList.add("hidden");
 
   // to show user who sent message
-  messageElement.appendChild(userElement);
+  messageBlock.appendChild(userElement);
+  messageBlock.appendChild(messageElement);
+  messageElement.appendChild(sendDateElement);
 
   if (document.querySelector("#empty-text")) {
     chatData.removeChild(document.querySelector("#empty-text"));
   }
   if (logged_user_id == user.id) {
-    messageElement.classList.add("sender");
+    messageBlock.classList.add("sender");
   } else {
-    messageElement.classList.add("receiver");
+    messageBlock.classList.add("receiver");
   }
 
-  chatData.appendChild(messageElement);
+  chatData.appendChild(messageBlock);
   scrollChatContainer();
 };
 

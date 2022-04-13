@@ -5,8 +5,12 @@
   padding: 0.5rem;
 }
 
-.message {
+.message-block {
   text-align: left;
+  width: 100%;
+}
+
+.message {
   display: block;
   color: rgb(29, 30, 31);
   border: 2px solid rgb(34, 197, 238);
@@ -14,17 +18,17 @@
   margin: 0.5rem 0px;
   padding: 0.5rem;
   padding-left: 1rem;
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-weight: bold;
   width: 40%;
 }
 
 .message-user {
-  font-size: 0.5rem;
+  font-size: 0.3rem;
   display: block;
 }
 .message-date {
-  font-size: 0.5rem;
+  font-size: 0.3rem;
   display: none;
 }
 
@@ -36,7 +40,7 @@
   margin-right: auto;
 }
 
-.sender {
+.sender .message {
   margin-left: auto;
 }
 
@@ -48,6 +52,10 @@
 .receiver .message-date,
 .receiver .message-user {
   text-align: left;
+}
+
+.message-user::first-letter {
+  text-transform: capitalize;
 }
 
 .chat-wrapper {

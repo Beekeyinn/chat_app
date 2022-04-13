@@ -9,16 +9,16 @@
     <div class="border-1 border-dark rounded-1 chat-wrapper">
         <div id="chat-data">
             {% for message in messages %}
-            <span
-                  class="message {% if message.user == request.user %}sender{% else %}receiver{% endif %}">
+            <div
+                 class="message-block {% if message.user == request.user %}sender{% else %}receiver{% endif %}">
                 <span
                       class="message-user">{{message.user.username|capfirst}}</span>
-                {{message.message}}
-
-
-                <span
-                      class="message-date">{{message.created_at|date:"D d M Y"}}</span>
-            </span>
+                <span class="message">
+                    {{message.message}}
+                    <span
+                          class="message-date">{{message.created_at|date:"D M d Y"}}</span>
+                </span>
+            </div>
             {% endfor %}
         </div>
     </div>
